@@ -22,9 +22,9 @@ from rest_framework import permissions
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Team-C Project",
+        title="Team-K Project",
         default_version='ver.1',
-        description="Team-C Project API 문서",
+        description="Team-K Project API 문서",
         terms_of_service="https://www.google.com/policies/terms/",
     ),
     public=True,

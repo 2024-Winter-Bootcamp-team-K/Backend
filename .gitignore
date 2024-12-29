@@ -170,4 +170,4 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
-secrets.json
+Backend/secrets.json
