@@ -9,22 +9,26 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 import json
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Load secret.json
-with open(BASE_DIR / 'secrets.json') as f:
-    secret_data = json.load(f)
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+# Load secrets
+try:
+    with open(BASE_DIR / 'secrets.json') as f:
+        secret_data = json.load(f)
+except FileNotFoundError:
+    # Fallback to environment variables if secrets.json is not found
+    secret_data = {
+        'SECRET_KEY': os.getenv('SECRET_KEY', 'fallback-secret-key'),
+    }
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = secret_data['SECRET_KEY']
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

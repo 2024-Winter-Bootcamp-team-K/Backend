@@ -30,12 +30,14 @@ jobs:
         pip install -r requirements.txt
 
     # 4. 데이터베이스 설정 (SQLite 사용 예제)
-    #- name: Set up database
+    #- name: Run migrations
     #  run: |
     #    python manage.py migrate
 
     # 5. 테스트 실행
     - name: Run tests
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
       run: |
         python manage.py test
 
@@ -50,5 +52,4 @@ jobs:
     # 배포 단계 예제 (AWS나 다른 플랫폼 설정 필요)
     #- name: Deploy to Production
     #  run: |
-    #    echo "Deploy script here..."
-        # Django 배포에 맞는 스크립트 추가
+    #    echo "Production deployment logic here..."
